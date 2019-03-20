@@ -25,10 +25,29 @@ class SteamedMilk extends CondimentDecorator
     }
 
     /**
+     * @return string
+     */
+    public function getSize(): string
+    {
+        return $this->beverage->getSize();
+    }
+
+    /**
      * @return float
      */
     public function cost(): float
     {
-        return .10 + $this->beverage->cost();
+        $cost = $this->beverage->cost();
+        $size = $this->getSize();
+
+        if ($size === Beverage::SIZE_TALL) {
+            $cost += .05;
+        } elseif ($size === Beverage::SIZE_GRANDE) {
+            $cost += .10;
+        } elseif ($size === Beverage::SIZE_VENTI) {
+            $cost += .15;
+        }
+
+        return $cost;
     }
 }

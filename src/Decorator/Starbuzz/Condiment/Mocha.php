@@ -25,10 +25,29 @@ class Mocha extends CondimentDecorator
     }
 
     /**
+     * @return string
+     */
+    public function getSize(): string
+    {
+        return $this->beverage->getSize();
+    }
+
+    /**
      * @return float
      */
     public function cost(): float
     {
-        return .20 + $this->beverage->cost();
+        $cost = $this->beverage->cost();
+        $size = $this->getSize();
+
+        if ($size === Beverage::SIZE_TALL) {
+            $cost += .15;
+        } elseif ($size === Beverage::SIZE_GRANDE) {
+            $cost += .20;
+        } elseif ($size === Beverage::SIZE_VENTI) {
+            $cost += .25;
+        }
+
+        return $cost;
     }
 }
