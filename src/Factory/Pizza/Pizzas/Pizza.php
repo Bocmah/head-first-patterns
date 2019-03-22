@@ -2,6 +2,13 @@
 
 namespace Patterns\Factory\Pizza\Pizzas;
 
+use Patterns\Factory\Pizza\Ingredients\Cheese;
+use Patterns\Factory\Pizza\Ingredients\Clams;
+use Patterns\Factory\Pizza\Ingredients\Dough;
+use Patterns\Factory\Pizza\Ingredients\Pepperoni;
+use Patterns\Factory\Pizza\Ingredients\Sauce;
+use Patterns\Factory\Pizza\Ingredients\Veggies\Vegetable;
+
 abstract class Pizza
 {
     /**
@@ -10,31 +17,36 @@ abstract class Pizza
     protected $name;
 
     /**
-     * @var string
+     * @var Dough
      */
     protected $dough;
 
     /**
-     * @var string
+     * @var Sauce
      */
     protected $sauce;
 
     /**
-     * @var array
+     * @var Vegetable[]
      */
-    protected $toppings;
+    protected $veggies;
 
-    public function prepare()
-    {
-        echo 'Preparing ' . $this->name . "\n";
-        echo 'Tossing dough...' . "\n";
-        echo "Adding sauce..." . "\n";
-        echo "Adding toppings: " . "\n";
+    /**
+     * @var Cheese
+     */
+    protected $cheese;
 
-        foreach ($this->toppings as $topping) {
-            echo "  " . $topping . "\n";
-        }
-    }
+    /**
+     * @var Pepperoni
+     */
+    protected $pepperoni;
+
+    /**
+     * @var Clams
+     */
+    protected $clam;
+
+    abstract public function prepare();
 
     public function bake()
     {
@@ -57,5 +69,10 @@ abstract class Pizza
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function setName(string $name)
+    {
+        $this->name = $name;
     }
 }
