@@ -1,9 +1,9 @@
 <?php
 
-require __DIR__ . '/../../../../bootstrap.php';
-
 use Patterns\Factory\Pizza\FactoryMethod\ChicagoPizzaStore;
 use Patterns\Factory\Pizza\FactoryMethod\NYPizzaStore;
+
+require __DIR__ . '/../../../../bootstrap.php';
 
 $nyStore = new NYPizzaStore();
 $chicagoStore = new ChicagoPizzaStore();
